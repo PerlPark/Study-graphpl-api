@@ -4,10 +4,12 @@ let tweets = [
   {
     id: '1',
     text: 'first one!',
+    userId: '2',
   },
   {
     id: '2',
     text: 'second one',
+    userId: '1',
   },
 ];
 
@@ -66,6 +68,7 @@ const resolvers = {
       const newTweet = {
         id: tweets.length + 1,
         text,
+        userId,
       };
       tweets.push(newTweet);
       return newTweet;
@@ -84,6 +87,11 @@ const resolvers = {
     nickName(root) {
       console.log(root);
       return `${root.firstName.slice(0, 2)}${root.lastName}`;
+    },
+  },
+  Tweet: {
+    author({ userId }) {
+      return users.find((user) => user.id === userId);
     },
   },
 };
