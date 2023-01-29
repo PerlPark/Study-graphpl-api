@@ -31,9 +31,15 @@ const typeDefs = gql`
     id: ID!
     firstName: String!
     lastName: String!
+    """
+    firstName과 lastName를 공백을 두고 합친 문자열입니다.
+    """
     fullName: String!
     nickName: String!
   }
+  """
+  한 개의 Tweet 데이터입니다.
+  """
   type Tweet {
     id: ID!
     text: String!
@@ -46,6 +52,9 @@ const typeDefs = gql`
   }
   type Mutation {
     postTweet(text: String!, userId: ID!): Tweet!
+    """
+    요청한 Tweet을 찾으면 삭제하고 true를 반환, 찾지 못하면 false가 반환됩니다.
+    """
     deleteTweet(id: ID!): Boolean!
   }
 `;
